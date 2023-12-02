@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="mayank.10.png" type="image/x-icon">
+
+    </head>
+<body>
+    <div class="main_div">
+     <div class="music_container">
+<h2 id="title">honey singh</h2>
+<h3 id="artist"> ankhon ankhon</h3>
+<div class ="img_container">
+    <img src="mayank-1.jpg" alt="">
+</div>
+
+<audio src="mayank-1.mp3" controls></audio>
+
+
+<div class="music_controls">
+    <i class="fas fa-backward" id="prev" title="previous"></i>
+    <i class="fas fa-play main_button" id="play" title="play"></i>
+    <i class="fas fa-forward" id="next" title="next"></i>
+
+
+</div>
+ </div>
+ </div>
+ <div>
+ <footer>
+    <div class="credit">
+        <p> 
+            CREATOR'S 
+            <br><a href="mayankshukla1822@gmail.com" ><font aria-setsize="10px"> MAYANK </font>
+        
+            </a>,
+            <br><a href="sumitranjan0355@gmail.com">SUMIT</a> 
+            <br><a href="kaithwasyaman@gmail.com">yaman</a> 
+            
+            
+    </p>
+
+    </div>
+</footer>
+</div>
+
+
+
+
+
+    <script>
+    const music = document.querySelector("audio");
+    const img = document.querySelector("img");
+    const play = document.getElementById("play");
+    const artist= document.getElementById("artist");
+    const title = document.getElementById("title");
+    const prev = document.getElementById("prev");
+    const next = document.getElementById("next");
+
+
+const songs = [
+    {
+      name: "mayank-1",
+      title: "ankhon ankhon",
+       artist: "honey singh",
+    },
+{
+    name : "mayank-2",
+    title: "bapu zamindar",
+    artist:"jassi gill",
+},
+{
+    name: "mayank-3",
+    title: "mera dil",
+    artist: "sunidhi chauhan",
+},
+{
+    name: "mayank-4",
+    title: "oh oh jane jana" ,
+    artist: "kamaal khan",
+},
+{
+    name: "mayank-5",
+    title: "tumse milna",
+    artist: "salman",
+},
+{
+    name: "mayank-6",
+    title: "hare hare",
+    artist: "s",
+},
+];
+
+  let isplaying = false;
+   const playmusic=()=>{ 
+        isplaying = true;
+        music.play();
+        play.classList.replace("fa-play", "fa-pause");
+       img.classList.add("anime");
+    };
+
+    //puse
+
+   const pausemusic = () => { 
+        isplaying = false;
+        music.pause();
+        play.classList.replace( "fa-pause","fa-play");
+       img.classList.remove("anime");
+
+    };
+
+    play.addEventListener('click',()=>{
+        if(isplaying){
+            pausemusic();
+
+        }else{
+            playmusic();
+        }
+    })
+
+    //changing the 
+const loadsong = (songs) => {
+    title.textContent = songs.title;
+    artist.textContent = songs.artist;
+    music.src =  songs.name + ".mp3";
+    img.src =  songs.name + ".jpg";
+};
+songIndex = 0;
+    //loadsong(Songs[1]);
+    const nextsong = () => {
+        songIndex=(songIndex+1)%songs.length;
+        loadsong(songs[songIndex]);
+        playmusic();
+    };
+
+    const prevsong = () =>{
+        songIndex = (songIndex-1%songs.length);
+        loadsong(songs[songIndex]);
+        playmusic();
+    };
+    next.addEventListener("click", nextsong);
+    prev.addEventListener("click", prevsong);
+  </script>
+</body>
+</html> 
